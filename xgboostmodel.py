@@ -9,6 +9,7 @@ train_data, test_data = read_data('./data/train.csv', './data/test.csv')
 train_x, train_y = train_data[1:, :-1], train_data[1:, -1:]
 
 # fit xgboost classifier
+print("Training started")
 gbm = xgb.XGBClassifier(max_depth=3, n_estimators=300, learning_rate=0.05).fit(train_x, train_y.ravel())
 pred_y = gbm.predict(test_data[1:, :])
 
@@ -20,4 +21,4 @@ with open('prediction.csv', 'w') as f:
     writer.writerows([['Id','Response']])
     writer.writerows(zip(id,y_pred1))
 f.close()
-print("Ban gaya Data Scientist!!!")
+print("Training ended")
